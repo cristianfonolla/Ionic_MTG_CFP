@@ -1,0 +1,6 @@
+.breadcrumb_title {
+  font-size: 15px;
+}
+.breadcrumb > li + li::before {
+  color: #4B5F69 !important;
+}

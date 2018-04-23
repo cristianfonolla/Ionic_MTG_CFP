@@ -1,0 +1,23 @@
+<header style="padding-bottom: 6em;">
+  <nav class="sticky" id="myHeader">
+    <div class="row background-grey no-gutter no-margin">
+      <div class="hidden-xs hidden-sm col-md-2"></div>
+      <div class="parent col-xs-12 col-md-8 no-gutter">
+        <div class="col-xs-2 pad-bottom-top-5 no-gutter">
+          <a class="btn btn-white pull-left verticalAlign" (click)="onGoBack()"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        </div>
+        <div class="col-xs-8 col-md-4 text-center white main_title verticalAlign no-gutter">
+          <strong>{{header}}</strong>
+        </div>
+        <div class="col-xs-2 pad-bottom-top-5 no-gutter">
+          <a *ngIf="rigthIcon === 'none'"></a>
+          <a *ngIf="!rigthIcon || rigthIcon === 'search'" (click)="onSearch()" class="btn btn-white pull-right glyphicon glyphicon-search verticalAlign"></a>
+          <a *ngIf="rigthIcon === 'envelope'" (click)="onSendRequestInnovation()" class="btn btn-white pull-right glyphicon glyphicon-envelope verticalAlign"></a>
+          <!--<a *ngIf="rigthIcon === 'refresh'" (click)="onRefresh()" class="btn btn-white pull-right glyphicon glyphicon-refresh verticalAlign glyphicon-refresh-hover"></a>-->
+          <a *ngIf="rigthIcon === 'alarm'" (click)="onAlarm()" class="btn btn-white pull-right glyphicon verticalAlign glyphicon glyphicon-bell"></a>
+        </div>
+      </div>
+      <div class="hidden-xs hidden-sm col-md-2"></div>
+    </div>
+  </nav>
+</header>

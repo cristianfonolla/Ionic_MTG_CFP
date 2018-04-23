@@ -1,0 +1,110 @@
+<section>
+    <app-header (goBack)="goBack()" [rigthIcon]="'none'" [header]="catHeaderName"></app-header>
+
+    <div style="padding-top: 1.5em" class="container text-center">
+
+        <form [formGroup]="newSolutionFrom" (ngSubmit)="onSubmit()" class="login-form">
+
+            <input placeholder="id" id="id" name="id" type="text" formControlName="id">
+            <input placeholder="name" id="name" name="name" type="text" formControlName="name">
+            <input placeholder="image" id="imagePath" name="imagePath" type="text" formControlName="imagePath">
+            <input placeholder="tipologid" id="tipologiaId" name="tipologiaId" type="text"
+                   formControlName="tipologiaId">
+            <input placeholder="fechalata" id="fechaAlta" name="fechaAlta" type="text" formControlName="fechaAlta">
+            <input placeholder="popu" id="popularidad" name="popularidad" type="text" formControlName="popularidad">
+            <input placeholder="valglob" id="valGlobal" name="valGlobal" type="text" formControlName="valGlobal">
+            <input placeholder="valimpl" id="valImplementacion" name="valImplementacion" type="text"
+                   formControlName="valImplementacion">
+            <input placeholder="valrepli" id="valReplicabilidad" name="valReplicabilidad" type="text"
+                   formControlName="valreplicabilidad">
+            <input placeholder="valmerca" id="valMercado" name="valMercado" type="text" formControlName="valMercado">
+            <input placeholder="valestra" id="valEstrategico" name="valEstrategico" type="text"
+                   formControlName="valEstrategico">
+            <input placeholder="problemasolved" id="problemSolved" name="problemSolved" type="text"
+                   formControlName="problemSolved">
+            <input placeholder="tsystemsadv" id="tsystemsAdv" name="tsystemsAdv" type="text"
+                   formControlName="tsystemsAdv">
+            <input placeholder="custadv" id="customerAdv" name="customerAdv" type="text" formControlName="customerAdv">
+            <input placeholder="propId" id="propietarioId" name="propietarioId" type="text"
+                   formControlName="propitarioWiw">
+
+            <button class="login-form" type="submit">NEW SOLUTION</button>
+
+        </form>
+
+        <div style="padding-top: 1em" id="addTechs">
+            <h3>Añadir Technologies: </h3>
+
+            <!--<select>-->
+            <!--<option *ngFor="let tech of technologies" value="tech">{{ tech.technologyName }}</option>-->
+            <div class="row background-light-grey no-gutter no-margin" style="padding-top: 6px">
+                <div class="hidden-xs hidden-sm col-md-2"></div>
+                <div class="parent grid-container col-xs-12 col-md-8 no-padding no-gutter text-center">
+                    <div class="item pointer" *ngFor="let tech of technologies; let i = index"
+                         (click)="setSelected(tech.id)">
+                        <div class="positioned display-table" [ngClass]="{'grid-item-selected' : isChecked(tech.id)}">
+                            <div class="col-xs-12 display-table-row no-gutter">
+                                <span id="col_a" class="display-table-cell">{{ tech.technologyName }}</span>
+                            </div>
+                            <div class="col-xs-12 display-table-row no-gutter">
+                                <span id="col_b" [ngClass]="{'visible' : isChecked(tech.id)}"
+                                      class="display-table-cell glyphicon glyphicon-ok"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden-xs hidden-sm col-md-2"></div>
+            </div>
+            <!--</select>-->
+        </div>
+
+        <div style="padding-top: 1em" id="addSectorIndustrial">
+
+            <h3>Añadir Sector Industrial: </h3>
+
+            <div class="row background-light-grey no-gutter no-margin" appMatchHeight className='pointer'> <!---->
+                <div class="hidden-xs hidden-sm col-md-2"></div>
+                <div class="sector-grid-container col-xs-12 col-md-8 no-gutter">
+                    <div class="sector-grid-cell" *ngFor="let group of groupsIndSectors">
+
+                        <div class="row background-middle-grey no-gutter no-margin">
+                            <div class="col-xs-12 white main_title pull-left pad-bottom-top-5 verticalAlign">
+                                <p>{{group}}</p>
+                            </div>
+                        </div>
+
+                        <div class="sector-item pointer"
+                             *ngFor="let indSect of industrialSectors | sectorFilter:group; let i = index"
+                             (click)="setSelectedSector(indSect.id)">
+                            <div class="sector-positioned sector-display-table"
+                                 [ngClass]="{'sector-grid-item-selected' : isCheckedSector(indSect.id)}">
+                                <div class="col-xs-12 sector-display-table-row no-gutter">
+                                    <span id="col_a2" class="sector-display-table-cell">{{ indSect.industrialSectorName }}</span>
+                                </div>
+                                <div class="col-xs-12 sector-display-table-row no-gutter">
+                                    <span id="col_b2" [ngClass]="{'visible' : isCheckedSector(indSect.id)}"
+                                          class="sector-display-table-cell glyphicon glyphicon-ok"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="hidden-xs hidden-sm col-md-2"></div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<app-footer (addSolution)="addSolution()"></app-footer>
+
+<div *ngIf="!techLoaded || !sectorLoaded" class="overlay navbar-inverse">
+    <div class="parent spin">
+        <div class="verticalAlign text-center" style="color:white">
+            <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate verticalAlign"></span>
+            <span class="spin-text"> CARGANDO... </span>
+        </div>
+    </div>
+</div>

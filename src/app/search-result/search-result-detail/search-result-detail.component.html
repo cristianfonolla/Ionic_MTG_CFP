@@ -1,0 +1,155 @@
+<section>
+    <app-header (goBack)="goBack()" [rigthIcon]="'none'" [header]="catHeaderName"></app-header>
+
+    <div style="padding-top: 1.5em" class="container text-center">
+
+        <h3 *ngIf="solutionSelected" class="textArea-t">{{solutionSelected.solutionName}}</h3>
+
+        <div *ngFor="let val of arrValuesSliders; let i = index;">
+            <h3>{{val['titol']}}</h3>
+
+            <div *ngIf="solutionSelected">
+                <span [ngClass]="initClassesStars(val['value'],1)"></span>
+                <span [ngClass]="initClassesStars(val['value'],2)"></span>
+                <span [ngClass]="initClassesStars(val['value'],3)"></span>
+                <span [ngClass]="initClassesStars(val['value'],4)"></span>
+                <span [ngClass]="initClassesStars(val['value'],5)"></span>
+            </div>
+
+            <div class="col-sm-12" class="slidecontainer">
+                <!--<input disabled [(ngModel)]="val['value']" style="background-color: #D3D9E0" type="range" min="0" max="5"-->
+                       <!--value="{{val['value']}}">-->
+                <span style="font-weight: bold; font-size: 1.5em">{{val['value']}}</span>
+                <hr *ngIf="i === 0">
+                <div class="textArea-p" *ngIf="i === 0">
+                    <span>#Proactive #CustomerNeeds BehaviourControl #Automation</span>
+                </div>
+                <!--<a (click)="aviso('Not implemented')" *ngIf="i === 0"style=" text-decoration: underline; float: right; color: black;" href="#">View category tree</a>-->
+                <br>
+                <hr>
+            </div>
+        </div>
+
+        <div class="col-sm-12" style="padding-bottom: 2em;">
+            <h3>TIPOLOGIA</h3>
+            <!--<span *ngIf="solutionSelected.tipologia === 1" class="col-sm-12"><input type="radio" name="opt" value="ts" checked> T-SYSTEMS</span>-->
+            <!--<span *ngIf="solutionSelected.tipologia === 2" class="col-sm-12"><input type="radio" name="opt" value="ts1" checked> PARTNER</span>-->
+            <!--<span *ngIf="solutionSelected.tipologia === 3" class="col-sm-12"><input type="radio" name="opt" value="ts2" checked> STANDARD SOLUTION</span>-->
+
+            <span *ngIf="solutionSelected && solutionSelected.tipologia === 1" class="col-sm-12"><h4 style="color: red;">T-SYSTEMS</h4></span>
+            <span *ngIf="solutionSelected && solutionSelected.tipologia === 2" class="col-sm-12"><h4 style="color: red;">PARTNER</h4></span>
+            <span *ngIf="solutionSelected && solutionSelected.tipologia === 3" class="col-sm-12"><h4 style="color: red;">STANDARD SOLUTION</h4></span>
+
+        </div>
+
+        <div class="row">
+            <span style="float: left; text-decoration: underline;">Vertical propietario:</span>
+        </div>
+        <div style="background-color: #D3D9E0" class="row textArea-p text-left">
+
+            <!--<div class="dropdown">-->
+                <!--<button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+                    <!--DROPDOWN-->
+                    <!--<span style="border-bottom-color: black; border-top-color: black;" class="caret"></span>-->
+                <!--</button>-->
+                <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+                    <!--<li><a href="#">{{ verticalProp[0] }}</a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+
+            <select *ngIf="solutionSelected" id="mainselection">
+                <option style="text-align: center" selected value="NAME">{{solutionSelected.vertPropietaryName}}</option>
+            </select>
+
+
+
+
+        </div>
+
+        <div class="row">
+            <span style="float: left; text-decoration: underline;">Persona de contacto:</span>
+        </div>
+        <div *ngIf="solutionSelected" class="row textArea-p">
+            <span> {{ solutionSelected.personaEmail }} </span>
+        </div>
+
+        <div class="row background-middle-grey">
+            <div class="col-xs-12 white main_title pull-left verticalAlign pad-bottom-top-5">
+                <p style="text-align: left;">WHAT PROBLEM RESOLVES</p>
+            </div>
+        </div>
+        <div class="row">
+            <div *ngIf="solutionSelected" class="textArea">
+                <p style="text-align: left;">{{ solutionSelected.problemResolves }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <!--<a (click)="commentView('PROBLEM')" data-toggle="modal" data-target="#myModal1"-->
+               <!--style="text-decoration: underline; float: right; color: black;" href="#">Comentario(s)</a>-->
+        </div>
+
+        <div class="row background-middle-grey">
+            <div class="col-xs-12 white main_title pull-left verticalAlign pad-bottom-top-5">
+                <p style="text-align: left;">T-SYSTEMS COMPETITIVE ADVANTATGE</p>
+            </div>
+        </div>
+        <div class="row">
+            <div *ngIf="solutionSelected" class="textArea">
+                <p style="text-align: left">{{ solutionSelected.tsystemsAdvantatge }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <!--<a (click)="commentView('TSCA')" data-toggle="modal" data-target="#myModal1"-->
+               <!--style="text-decoration: underline; float: right; color: black;" href="#">Comentario(s)</a>-->
+        </div>
+
+        <div class="row background-middle-grey">
+            <div class="col-xs-12 white main_title pull-left verticalAlign pad-bottom-top-5">
+                <p style="text-align: left;">CUSTOMER COMPETITIVE ADVANTATGE</p>
+            </div>
+        </div>
+        <div class="row">
+            <div *ngIf="solutionSelected" class="textArea">
+                <p style="text-align: left;">{{ solutionSelected.customerAdvantatge }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <!--<a (click)="commentView('CUSTCA')" data-toggle="modal" data-target="#myModal1" style="text-decoration: underline; float: right; color: black;" href="#">Comentario(s)</a>-->
+        </div>
+    </div>
+
+</section>
+
+<app-footer (removeSolution)="removeSolution()"></app-footer>
+
+<div class="container">
+    <div class="modal fade" id="myModal1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div style="text-align: center;" class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">COMMENTS LIST</h4>
+                </div>
+                <div class="modal-body">
+                    <div *ngFor="let val of result">
+                        <span>Escrito por : </span><span style="text-decoration: underline; color: blue;">{{val['emailAutor']}}</span>
+                        <p>{{val['comentario']}}</p>
+                        <br>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!detailLoaded" class="overlay navbar-inverse">
+    <div class="parent spin">
+        <div class="verticalAlign text-center" style="color:white">
+            <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate verticalAlign"></span>
+            <span class="spin-text"> CARGANDO... </span>
+        </div>
+    </div>
+</div>

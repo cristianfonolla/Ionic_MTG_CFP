@@ -1,0 +1,12 @@
+<div *ngIf="items.length > 0" class="row background-light-grey no-gutter no-margin">
+  <div class="hidden-xs hidden-sm col-md-2"></div>
+  <div class="col-xs-12 col-md-8 background-light-grey main_title pull-left verticalAlign pad-bottom-top-5">
+    <ul class="breadcrumb no-padding no-margin background-light-grey ">
+      <li *ngFor="let navItem of items">
+        <a *ngIf="navItem != items[items.length - 1]" class="breadcrumb_title grey" style="text-decoration: underline;" (click)="navigateToCategory(navItem.id)">{{navItem.title}} </a>
+        <a *ngIf="navItem === items[items.length - 1]" class="breadcrumb_title">{{navItem.title}}</a>
+      </li>
+    </ul>
+  </div>
+  <div class="hidden-xs hidden-sm col-md-2"></div>
+</div>

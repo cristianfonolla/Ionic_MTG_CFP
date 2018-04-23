@@ -1,0 +1,93 @@
+<header>
+  <nav *ngIf="!isSolutionsMode" class="navbar navbar-default navbar-inverse no-padding no-margin">
+    <div class="navbar-header" style="width: 100%;">
+      <div class="parent special_height" style="position: absolute; width: 100%;">
+        <img src="assets/img/T.png" class="img-responsive">
+      </div>
+
+      <div class="parent special_height app_title">
+
+        <div class="navbar-brand no-padding verticalAlign text-center main_title">
+          <strong class="white">DIGITAL OPEN INNOVATION</strong>
+        </div>
+      </div>
+      <div class="language-toggle dropdown verticalAlign" appDropdown>
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle white">Español<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li *ngIf="isAuthenticated()"><a>{{username}}</a></li>
+          <li *ngIf="isAuthenticated()" role="separator" class="divider"></li>
+          <li><a href="#">Catalán</a></li>
+          <li><a href="#">Inglés</a></li>
+          <li><a href="#">Alemán</a></li>
+          <li><a href="#">Francés</a></li>
+          <li *ngIf="isAuthenticated()" role="separator" class="divider"></li>
+          <li *ngIf="isAuthenticated()"><a (click)="logout()">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div *ngIf="!isAuthenticated();else actionLines">
+  <app-login></app-login>
+</div>
+
+<ng-template #actionLines>
+  <div *ngIf="!isSolutionsMode; else solutionsMode">
+    <div class="divide"></div>
+    <div class="row background-light-grey no-gutter no-margin">
+      <div class="hidden-xs hidden-sm col-md-2"></div>
+      <div class="col-xs-12 col-md-8 pull-left no-gutter pointer" (click)="setSolutionsMode()">
+        <div class="box-autosize-4-2 cover max-height-200px" style="background-position: 50% 50%; background-image: url('assets/img/digital-solutions1920x1080.jpg'); overflow:hidden;">
+          <div class="overlay"></div>
+          <div class="position-absolute">
+            <a class="home-title white"><span>SOLUTIONS</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="hidden-xs hidden-sm col-md-2"></div>
+    </div>
+    <div class="divide"></div>
+    <div class="row background-light-grey no-gutter no-margin">
+      <div class="hidden-xs hidden-sm col-md-2"></div>
+      <div class="col-xs-12 col-md-8 pull-left no-gutter pointer">
+        <div class="box-autosize-4-2 cover max-height-200px" style="background-position: 50% 50%; background-image: url('assets/img/satisfied_employees1920x1080.jpg'); overflow:hidden;">
+          <div class="overlay"></div>
+          <div class="position-absolute">
+            <a class="home-title white"><span>EXPERTS</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="hidden-xs hidden-sm col-md-2"></div>
+    </div>
+    <div class="divide"></div>
+    <div class="row background-light-grey no-gutter no-margin">
+      <div class="hidden-xs hidden-sm col-md-2"></div>
+      <div class="col-xs-12 col-md-8 pull-left no-gutter pointer">
+        <div class="box-autosize-4-2 cover max-height-200px" style="background-position: 50% 50%; background-image: url('assets/img/digital_maturity_model1920x1080.jpg'); overflow:hidden;">
+          <div class="overlay"></div>
+          <div class="position-absolute">
+            <a class="home-title white"><span>DIGITAL MATURITY MODEL</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="hidden-xs hidden-sm col-md-2"></div>
+    </div>
+  </div>
+  <ng-template #solutionsMode>
+    <app-solutions-mode (goBack)="setActionLinesMode()"></app-solutions-mode>
+  </ng-template>
+
+</ng-template>
+<div *ngIf="activeComponent === 'app-search-result'">
+    <app-search-result></app-search-result>
+</div>
+
+<div *ngIf="activeComponent === 'app-search-result-detail'">
+    <app-search-result-detail></app-search-result-detail>
+</div>
+
+<div *ngIf="activeComponent === 'app-new-solution'">
+    <app-new-solution></app-new-solution>
+
+</div>

@@ -1,0 +1,21 @@
+<div *ngIf="visible" class="modal fade show in danger" id="myModal" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content alert-{{type}}">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+				<h4 class="modal-title">
+					<div *ngIf="type == 'success'" class="success"><span class="glyphicon glyphicon-saved"></span>  <strong>Acción realizada con éxito</strong></div>
+					<div *ngIf="type == 'warning'"><span class="glyphicon glyphicon-warning-sign"></span>  <strong>Aviso</strong></div>
+					<div *ngIf="type == 'info'"><span class="glyphicon glyphicon-ok"></span>  <strong>Información</strong></div>
+					<div *ngIf="type == 'danger'"><span class="glyphicon glyphicon-alert"></span>  <strong>Error</strong></div>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<p>{{message}}</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-modal" (click)="hide()">Cerrar</button>
+			</div>
+		</div>
+	</div>
+</div>

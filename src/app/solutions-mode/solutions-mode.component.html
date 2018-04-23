@@ -1,0 +1,106 @@
+<app-messaging></app-messaging>
+<section>
+  <div *ngIf="activeComponent === 'app-solutions-mode'">
+    <app-header (goBack)="goBackToActionLines()" (refreshButton)="loadCategories()" header="SOLUTIONS" rigthIcon="none"></app-header>
+    <div>
+
+      <div class="row background-middle-grey no-gutter no-margin">
+        <div class="hidden-xs hidden-sm col-md-2"></div>
+        <div class="col-xs-12 col-md-8 white main_title pull-left verticalAlign pad-bottom-top-5">
+          <p>REQUEST TO THE INNOVATION DPT</p>
+        </div>
+        <div class="hidden-xs hidden-sm col-md-2"></div>
+      </div>
+
+      <div class="row background-light-grey no-gutter no-margin">
+        <div class="hidden-xs hidden-sm col-md-2"></div>
+        <div class="parent col-xs-12 col-md-8 pad-bottom-top-5 no-gutter">
+          <div class="col-xs-4 col-sm-2 pad-bottom-top-5">
+            <img src="assets/img/RequestInnovationDpt.png" class="box-autosize-4-4 box-explanation" alt="Enviar una consulta para el Dpt. de Innovación">
+          </div>
+          <div class="col-xs-8 col-sm-10 grey main_title verticalAlign">
+            <a class="grey" style="text-decoration:underline;" (click)="setRequestInnovationMode()">Enviar una consulta para el Dpt. de Innovación</a>
+          </div>
+        </div>
+        <div class="hidden-xs hidden-sm col-md-2"></div>
+      </div>
+
+      <div class="row background-middle-grey no-gutter no-margin">
+        <div class="hidden-xs hidden-sm col-md-2"></div>
+        <div class="col-xs-12 col-md-8 white main_title pull-left verticalAlign pad-bottom-top-5">
+          <p>SEARCH FOR SOLUTIONS</p>
+        </div>
+        <div class="hidden-xs hidden-sm col-md-2"></div>
+      </div>
+
+      <div class="row background-light-grey no-gutter no-margin">
+        <div class="hidden-xs hidden-sm col-md-2"></div>
+        <div class="parent col-xs-12 col-md-8 pad-bottom-top-5 no-gutter">
+          <div class="col-xs-4 col-sm-2 pad-bottom-top-5">
+              <img src="assets/img/TecnologySearch.png" class="box-autosize-4-4 box-explanation" alt="Por tecnologia">
+          </div>
+          <div class="col-xs-8 col-sm-10 grey main_title verticalAlign">
+            <a class="grey" style="text-decoration:underline;" (click)="setTechnologySearchMode()">Por Tecnologia</a>
+          </div>
+        </div>
+        <div class="hidden-xs hidden-sm col-md-2"></div>
+      </div>
+
+      <div class="row background-light-grey no-gutter no-margin">
+        <div class="hidden-xs hidden-sm col-md-2"></div>
+        <div class="parent col-xs-12 col-md-8 pad-bottom-top-5 no-gutter">
+          <div class="col-xs-4 col-sm-2 pad-bottom-top-5">
+              <img src="assets/img/SectorSearch.png" class="box-autosize-4-4 box-explanation" alt="Por Sector Industrial">
+          </div>
+          <div class="col-xs-8 col-sm-10 grey main_title verticalAlign">
+            <a class="grey" style="text-decoration:underline;" (click)="setSectorSearchMode()">Por Sector Industrial</a>
+          </div>
+        </div>
+        <div class="hidden-xs hidden-sm col-md-2"></div>
+      </div>
+
+      <!--<div class="row background-light-grey no-gutter no-margin">-->
+        <!--<div class="hidden-xs hidden-sm col-md-2"></div>-->
+        <!--<div class="parent col-xs-12 col-md-8 pad-bottom-top-5 no-gutter">-->
+          <!--<div class="col-xs-4 col-sm-2 pad-bottom-top-5">-->
+            <!--<img src="assets/img/userNeeds.png" class="box-autosize-4-4 box-explanation" alt="Por necesidades del usuario">-->
+          <!--</div>-->
+          <!--<div class="col-xs-8 col-sm-10 grey main_title verticalAlign">-->
+            <!--<a class="grey" style="text-decoration:underline;" (click)="setCategoryMode()">Por necesidades del usuario</a>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="hidden-xs hidden-sm col-md-2"></div>-->
+      <!--</div>-->
+    </div>
+  </div>
+
+
+
+  <div *ngIf="activeComponent === 'app-request-innovation'">
+    <app-request-innovation></app-request-innovation>
+  </div>
+
+  <div *ngIf="activeComponent === 'app-categories'
+    || activeComponent === 'app-category-detail'
+    || activeComponent === 'app-incomplete-search-criteria'">
+    <app-categories></app-categories>
+  </div>
+
+  <div *ngIf="activeComponent === 'app-technology-search'">
+    <app-technology-search></app-technology-search>
+  </div>
+
+  <div *ngIf="activeComponent === 'app-sector-search'">
+    <app-sector-search></app-sector-search>
+  </div>
+
+  <div *ngIf="!categoriesLoaded" class="overlay navbar-inverse">
+    <div class="parent spin">
+      <div class="verticalAlign text-center" style="color:white">
+        <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate verticalAlign"></span>
+        <span class="spin-text"> CARGANDO... </span>
+      </div>
+    </div>
+  </div>
+
+</section>

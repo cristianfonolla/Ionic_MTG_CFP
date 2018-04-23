@@ -1,0 +1,28 @@
+<div class="login-page">
+  <div class="form">
+    <div *ngIf="!isAuthenticated() && submitted" class="error">
+        <span class="glyphicon glyphicon-alert"></span> {{error}}
+      </div>
+
+
+      <p style="float: left">Dominio: </p>
+      <select id="mainselection" [(ngModel)]="domain">
+          <option style="text-align: center" selected value="TSE">TSE</option>
+          <option style="text-align: center" value="TS-EU">TS-EU</option>
+      </select>
+
+    <form [formGroup]="signinForm" (ngSubmit)="onSubmit()" class="login-form">
+
+      <input placeholder="username" id="username" name="username" type="text" formControlName="username">
+      <input placeholder="password" id="password" name="password" type="password" formControlName="password">
+      
+      <button  type="submit" [disabled]="!signinForm.valid " [ngClass]="{'disabled' : !signinForm.valid }" >login</button>
+
+    </form>
+    <div *ngIf="loading" class="overlay navbar-inverse">
+        <div class="parent spin"><div class="verticalAlign">
+          <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate verticalAlign"></span></div></div>
+    </div>
+  </div>
+  
+</div>

@@ -1,0 +1,17 @@
+.modal{
+    background: rgba(0, 0, 0, 0.55);
+}
+.btn-modal{
+    text-transform: uppercase;
+    outline: 0;
+    background: #4B5F69;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+}

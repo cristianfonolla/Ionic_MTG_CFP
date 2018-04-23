@@ -1,0 +1,120 @@
+<footer class="footer">
+    <nav style="width: 100%;">
+        <div *ngIf="componentActual === 'app-search-result'; else footerDetail"
+             class="row background-grey no-gutter no-margin" style="width:100%; position: absolute; left: 0;">
+            <div class="hidden-xs hidden-sm col-md-2"></div>
+            <div class="parent col-xs-12 col-md-8 no-gutter">
+                <div class="row col-xs-2 pad-bottom-top-5 no-gutter">
+
+                    <!--<div class="">-->
+                        <!--<div style="font-size: 1.5em" class="col-xs-3 col-sm-3 btn btn-white pull-left verticalAlign">-->
+                            <!--<a (click)="onNewSolution()"><span class="glyphicon glyphicon-plus-sign"></span></a>-->
+                            <!--<p class="hidden-xs">NUEVA SOLUCIÓN</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <div style="font-size: 1.5em" class="dropup col-sm-4">
+
+                        <button style="font-size: 1em; float: left" type="button"
+                                class="col-xs-6 col-sm-12 btn btn-white pull-left verticalAlign" (click)="onNewSolution()">
+                            <span class="glyphicon glyphicon-plus-sign"></span>
+                            <p class="hidden-xs">NUEVA SOLUCIÓN</p>
+                        </button>
+                    </div>
+
+                    <div style="font-size: 1.5em" class="dropup col-sm-4">
+                        <button style="font-size: 1em"
+                                class="col-xs-6 col-sm-12 btn btn-white pull-left verticalAlign dropdown-toggle" type="button"
+                                id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-sort"></span>
+                            <p class="hidden-xs">ORDENAR</p>
+                        </button>
+
+                        <ul style="color: black;" class="dropdown-menu" aria-labelledby="dropdownMenu2">
+
+                            <li *ngFor="let val of arrOrderBy;let i = index"><a (click)="onSort(i,val['emit'])"
+                                                                                href="#"> <span
+                                    class="glyphicon glyphicon-minus"></span> <span
+                                    [ngClass]="{'blacked': val['selected']}"> {{val['nom']}}</span> <span
+                                    style="float: right;" *ngIf="val['selected']" class="glyphicon glyphicon-ok"></span></a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div style="font-size: 1.5em" class="dropup col-sm-4">
+
+                        <button style="font-size: 1em; float: left" type="button"
+                                class="col-xs-6 col-sm-12 btn btn-white pull-left verticalAlign" data-toggle="modal"
+                                data-target="#myModal">
+                            <span class="glyphicon glyphicon-filter"></span>
+                            <p class="hidden-xs">FILTRO</p>
+                        </button>
+                    </div>
+                    <!--<button style="font-size: 1.5em" class="col-xs-3 col-sm-3 btn btn-white pull-left verticalAlign">-->
+                        <!--<a (click)="onMap()"><span class="glyphicon glyphicon-map-marker"></span></a>-->
+                        <!--<p class="hidden-xs">MAPA</p>-->
+                    <!--</button>-->
+                </div>
+            </div>
+            <div class="hidden-xs hidden-sm col-md-2"></div>
+        </div>
+
+        <ng-template #footerDetail>
+
+            <div *ngIf="componentActual === 'app-search-result-detail'" class="row background-grey no-gutter no-margin" style="width: 100%; position: absolute; left: 0;">
+                <div class="hidden-xs hidden-sm col-md-2"></div>
+                <div class="parent col-xs-12 col-md-8 no-gutter">
+                    <div class="row col-xs-2 pad-bottom-top-5 no-gutter">
+                            <button (click)="onErase()" style="font-size: 1.5em" class="col-sm-12 btn btn-white pull-left verticalAlign">
+                                <a><span class="glyphicon glyphicon-trash"></span></a>
+                                <p>BORRAR</p>
+                            </button>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="componentActual === 'app-new-solution'" class="row background-grey no-gutter no-margin" style="width: 100%; position: absolute; left: 0;">
+                <div class="hidden-xs hidden-sm col-md-2"></div>
+                <div class="parent col-xs-12 col-md-8 no-gutter">
+                    <div class="row col-xs-2 pad-bottom-top-5 no-gutter">
+                        <button (click)="onAddSolution()" style="font-size: 1.5em" class="col-sm-12 btn btn-white pull-left verticalAlign">
+                            <a><span class="glyphicon glyphicon-plus-sign"></span></a>
+                            <p>AÑADIR SOLUCIÓN</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </ng-template>
+
+
+    </nav>
+
+</footer>
+
+<div class="container">
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div style="text-align: center;" class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal">Cerrar &times;</button>
+                    <!--<h4 class="modal-title">Filtar por:-->
+                        <!--<button data-dismiss="modal" (click)="onFilter(filterSelected)">Hecho</button>-->
+                    <!--</h4>-->
+                </div>
+                <div class="modal-body">
+                    <span>Vertical Propietario:</span><br>
+                    <input type="text" [(ngModel)]="vertPropSelected"><br>
+                    <span>Persona de contacto:</span><br>
+                    <input type="text" [(ngModel)]="filterSelected">
+                </div>
+                <div class="modal-footer">
+                    <button style="float: left; font-size: 1.3em" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button style="float: right; font-size: 1.3em" (click)="onFilter(filterSelected)" type="button" class="btn btn-default" data-dismiss="modal">Filtrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

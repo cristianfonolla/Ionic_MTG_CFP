@@ -1,0 +1,44 @@
+<section *ngIf="activeComponent === 'app-categories'; else reqDetail">
+	<app-header (goBack)="goBack()" (searchButton)="searchCriteria()" [header]=catHeaderName></app-header>
+	<app-breadcrumb></app-breadcrumb>
+	<div>
+		<div *ngFor="let cat of categories">
+			<div class="row background-middle-grey no-gutter no-margin">
+				<div class="hidden-xs hidden-sm col-md-2"></div>
+				<div class="col-xs-12 col-md-8 white main_title pull-left verticalAlign pad-bottom-top-5">
+					<p>{{cat.header}}</p>
+				</div>
+				<div class="hidden-xs hidden-sm col-md-2"></div>
+			</div>
+
+			<div class="row background-light-grey no-gutter no-margin">
+				<div class="hidden-xs hidden-sm col-md-2"></div>
+				<div class="parent col-xs-12 col-md-8 pad-bottom-top-5 no-gutter">
+					<div class="col-xs-4 col-sm-2 pad-bottom-top-5">
+						<a *ngIf="isSelectionAllowed(cat); else disabledSelection" (click)="checkCategoriesOf(cat)">
+								<img src="assets/img/{{cat.imgSrc}}" [ngClass]="{'checked' : childsAreChecked(cat)}" class="box-autosize-4-4 box-explanation" alt="Escoger definiendo la problema">
+            </a>
+						<ng-template #disabledSelection>
+							<a>
+									<img src="assets/img/{{cat.imgSrc}}" class="box-autosize-4-4 box-explanation not-selectable" alt="Escoger definiendo la problema">
+							</a>
+						</ng-template>
+					</div>
+					<div class="col-xs-8 col-sm-10 grey main_title verticalAlign">
+						<a *ngIf="cat.childs.length > 0 || (cat.childs.length === 0 && cat.isDetail);else disabledNavigation" class="grey" style="text-decoration:underline;" (click)="getChildsOfCategory(cat)">{{cat.title || cat.CategoryDetail.title}}</a>
+						<ng-template #disabledNavigation>
+							<a class="grey">{{cat.title || cat.CategoryDetail.title}}</a>
+						</ng-template>
+						<p>{{countReqDetailsSelectedFromParent(cat)}} opción(es) escogida(s)</p>
+					</div>
+				</div>
+				<div class="hidden-xs hidden-sm col-md-2"></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<ng-template #reqDetail>
+	<app-category-detail *ngIf="activeComponent === 'app-category-detail'"></app-category-detail>
+	<app-incomplete-search-criteria *ngIf="activeComponent === 'app-incomplete-search-criteria'">Span</app-incomplete-search-criteria>
+</ng-template>

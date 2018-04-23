@@ -1,0 +1,62 @@
+<app-header (goBack)="goBack()" (searchButton)="searchCriteriaDetail()" [header]=catHeaderName></app-header>
+<app-breadcrumb (navBack)="goBack()"></app-breadcrumb>
+<div class="row background-middle-grey no-gutter no-margin">
+	<div class="hidden-xs hidden-sm col-md-2"></div>
+	<div class="col-xs-12 col-md-8 white main_title pull-left verticalAlign pad-bottom-top-5">&nbsp;</div>
+	<div class="hidden-xs hidden-sm col-md-2"></div>
+</div>
+<div class="row background-light-grey no-gutter no-margin">
+  <div class="hidden-xs hidden-sm col-md-2"></div>
+  <div class="parent col-xs-12 col-md-8 pad-bottom-top-5 no-gutter">
+
+    <div class="col-xs-4 col-sm-2 pad-bottom-top-5">
+      <a (click)="selectItem()">
+        <img src="assets/img/{{category.imgSrc}}" [ngClass]="{'checked' : isChecked()}" class="box-autosize-4-4 box-explanation" alt="">
+      </a>
+    </div>
+    <div class="col-xs-8 col-sm-10 grey main_title verticalAlign">
+      <p *ngIf="category?.categoryDetail == null">{{category.title}}</p>
+      <p *ngIf="category?.categoryDetail!=null">{{category?.categoryDetail.title}}</p>
+    </div>
+  </div>
+  <div class="hidden-xs hidden-sm col-md-2"></div>
+</div>
+<div *ngIf="category?.categoryDetail?.description">
+  <div class="row background-middle-grey no-gutter no-margin">
+    <div class="hidden-xs hidden-sm col-md-2"></div>
+    <div class="col-xs-12 col-md-8 white main_title pull-left verticalAlign pad-bottom-top-5"><p>ILUSTRATIVE EXAMPLE</p></div>
+    <div class="hidden-xs hidden-sm col-md-2"></div>
+  </div>
+  <div  class="row background-light-grey no-gutter no-margin">
+    <div class="hidden-xs hidden-sm col-md-2"></div>
+    <div class="parent col-xs-12 col-md-8 pad-bottom-top-5 no-gutter">
+      <div class="col-xs-4 col-sm-3 pad-bottom-top-5">
+        <a>
+          <img src="assets/img/{{category.categoryDetail.imgSrc}}" class="box-autosize-4-4" alt="" style="min-width: 100px;">
+        </a>
+      </div>
+      <div class="col-xs-8 col-sm-9 grey main_title verticalAlign">
+        <p>{{category.categoryDetail.description}}</p>
+      </div>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-2"></div>
+  </div>
+</div>
+<div class="row background-middle-grey no-gutter no-margin">
+  <div class="hidden-xs hidden-sm col-md-2"></div>
+  <div class="col-xs-12 col-md-8 white main_title pull-left verticalAlign pad-bottom-top-5"><p>YOUR EXPLANATION</p></div>
+  <div class="hidden-xs hidden-sm col-md-2"></div>
+</div>
+<div class="row background-light-grey no-gutter no-margin">
+  <div class="hidden-xs hidden-sm col-md-2"></div>
+  <div class="col-xs-12 col-md-8 pad-bottom-top-5">
+
+    <form [formGroup]="form" class="login-form">
+        <a (click)="selectText()">
+      <textarea id="detail" name="detail" type="text" formControlName="detail" rows="5" class="form-control box-explanation"></textarea>
+      </a>
+    </form>
+
+</div>
+  <div class="hidden-xs hidden-sm col-md-2"></div>
+</div>

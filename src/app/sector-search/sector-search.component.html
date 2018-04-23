@@ -1,0 +1,30 @@
+<section>
+  <app-header (goBack)="goBack()" (searchButton)="searchCriteria()" header="SEARCH SOLUTIONS BY INDUSTRIAL SECTOR"></app-header>
+  <div class="row background-light-grey no-gutter no-margin" appMatchHeight className='pointer'> <!---->
+    <div class="hidden-xs hidden-sm col-md-2"></div>
+    <div class="grid-container col-xs-12 col-md-8 no-gutter">
+      <div class="grid-cell" *ngFor="let group of groupsIndSectors">
+
+        <div class="row background-middle-grey no-gutter no-margin">
+          <div class="col-xs-12 white main_title pull-left pad-bottom-top-5 verticalAlign">
+            <p>{{group}}</p>
+          </div>
+        </div>
+
+        <div class="item pointer" *ngFor="let indSect of industrialSectors | sectorFilter:group; let i = index" (click)="setSelected(indSect.id)">
+          <div class="positioned display-table" [ngClass]="{'grid-item-selected' : isChecked(indSect.id)}">
+            <div class="col-xs-12 display-table-row no-gutter">
+              <span id="col_a" class="display-table-cell">{{ indSect.industrialSectorName }}</span>
+            </div>
+            <div class="col-xs-12 display-table-row no-gutter">
+              <span id="col_b" [ngClass]="{'visible' : isChecked(indSect.id)}" class="display-table-cell glyphicon glyphicon-ok"></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-2"></div>
+
+  </div>
+</section>

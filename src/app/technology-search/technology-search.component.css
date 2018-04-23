@@ -1,0 +1,124 @@
+.grid-container{
+    height: calc( 100vh - 80px);
+}
+
+.item {
+    background-color: lightgrey;
+    font-size: 11px;
+    text-align: center;
+    display: inline-block;
+    width: calc( (97% - 2px) / 3 );
+    margin: -5px 0 0 0;
+    height: calc( (100vh - 80px) / 5);/*calc( 100% / 5);/*calc( calc( 100vh - 80px) / 5);*/
+    min-height: 100px;
+}
+
+.grid-item-selected {
+    color: #CC0066;
+    background-color: white;
+}
+
+.positioned {
+    margin: 1px;
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;
+    /*display: table;
+    padding: 12px;*/
+    padding: 35px 0;
+  }
+
+  span {
+    /*display: table-cell;*/
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  span.glyphicon {
+      /*text-align: right;*/
+      width: 12px;
+      visibility: hidden;
+      margin: 0 auto;
+  }
+
+  .visible {
+    visibility: visible !important;
+  }
+
+  .display-table-row {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+  
+  .display-table-cell {
+    display: inline-block;
+  }
+
+  #col_b {
+    order: 2;
+  }
+
+  #col_a {
+    order: 1;
+  }
+
+ /* Small Devices, Tablets */
+  @media only screen and (min-width : 768px) {
+    .item{
+        font-size: 18px;
+    }
+    span.glyphicon {
+        width: 18px;
+    }
+    .positioned{
+        padding: 18px;
+    }
+    .display-table-row {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+      }
+      .display-table-cell {
+          display: inline-block;
+      }
+      .display-table-row {
+          
+      }
+  
+      #col_b {
+        order: 2;
+      }
+  
+      #col_a {
+        order: 1;
+      }
+}
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+    .item {
+        font-size: 18px;
+    }
+    span.glyphicon {
+        width: 18px;
+    }
+    .positioned {
+        /*padding: 18px;*/
+        padding: calc( 100% / 5) 0 0 0;
+    }
+    .display-table {
+        display:table;
+    }
+    .display-table-row {
+        display:table-row;
+    }
+    .display-table-cell {
+        display:inline-block;
+    }
+    .display-table-row {
+        display:table-row;
+    }
+}

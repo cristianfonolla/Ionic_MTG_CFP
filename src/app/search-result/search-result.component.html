@@ -1,0 +1,44 @@
+
+<section id="sectionSearchResult">
+
+    <app-header (goBack)="goBack()" (alarmButton)="onAlarm()" [rigthIcon]="icon" [header]=catHeaderName></app-header>
+    <!--<app-breadcrumb></app-breadcrumb>-->
+    <div style="padding: 0 0 5em 0;" *ngIf="activeComponent === 'app-search-result'">
+        <hr style="color: black; background-color: black;">
+        <div *ngFor="let cat of resultArr | filter:filterArgs | orderBy:orderByArgs:orderByDesc">
+            <div class="row background-light-grey no-gutter no-margin">
+                <div class="hidden-xs hidden-sm col-md-2"></div>
+                <div class="parent col-xs-12 col-md-8 pad-bottom-top-5 no-gutter">
+                    <div class="col-xs-4 col-sm-2 pad-bottom-top-5">
+                        <img (click)="changeComponent(cat.solutionId)" src="{{cat.imagePath}}" class="box-autosize-4-4 box-explanation" alt="Enviar una consulta para el Dpt. de Innovación">
+                    </div>
+                    <div class="row col-xs-8 col-sm-10 grey main_title verticalAlign">
+                        <!--<a class="grey" style="text-decoration:underline;" (click)="setRequestInnovationMode()">Enviar una consulta para el Dpt. de Innovación</a>-->
+                        <a (click)="changeComponent(cat.solutionId)" style="text-decoration: underline;" class="row col-sm-12 grey">{{cat.solutionName}}</a><br>
+                        <div class="row col-sm-12">
+                            <span [ngClass]="initClassesStars(cat.solutionStars,1)"></span>
+                            <span [ngClass]="initClassesStars(cat.solutionStars,2)"></span>
+                            <span [ngClass]="initClassesStars(cat.solutionStars,3)"></span>
+                            <span [ngClass]="initClassesStars(cat.solutionStars,4)"></span>
+                            <span [ngClass]="initClassesStars(cat.solutionStars,5)"></span>
+                        </div>
+                        <div class="row col-sm-12">
+                            <a style="color: black; text-decoration: underline;" href="mailto:{{cat.contactEmail}}?Subject={{cat.solutionName}}">{{cat.contactName}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="color: black; background-color: black;">
+        </div>
+    </div>
+</section>
+<app-footer (newSolution)="newSolution()" (sortButton)="sortSelection($event)" (filterButton)="onFilter($event)"></app-footer>
+
+<div *ngIf="!resultLoaded" class="overlay navbar-inverse">
+    <div class="parent spin">
+        <div class="verticalAlign text-center" style="color:white">
+            <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate verticalAlign"></span>
+            <span class="spin-text"> CARGANDO... </span>
+        </div>
+    </div>
+</div>

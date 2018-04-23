@@ -1,0 +1,19 @@
+<section>
+  <app-header (goBack)="goBack()" (searchButton)="searchCriteria()" header="SEARCH SOLUTIONS BY TECHNOLOGY"></app-header>
+  <div class="row background-light-grey no-gutter no-margin" style="padding-top: 6px">
+    <div class="hidden-xs hidden-sm col-md-2"></div>
+    <div class="parent grid-container col-xs-12 col-md-8 no-padding no-gutter text-center">
+      <div class="item pointer" *ngFor="let tech of technologies; let i = index" (click)="setSelected(tech.id)">
+        <div class="positioned display-table" [ngClass]="{'grid-item-selected' : isChecked(tech.id)}">
+          <div class="col-xs-12 display-table-row no-gutter">
+            <span id="col_a" class="display-table-cell">{{ tech.technologyName }}</span>
+          </div>
+          <div class="col-xs-12 display-table-row no-gutter">
+            <span id="col_b" [ngClass]="{'visible' : isChecked(tech.id)}" class="display-table-cell glyphicon glyphicon-ok"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-2"></div>
+  </div>
+</section>
